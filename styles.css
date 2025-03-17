@@ -1,0 +1,152 @@
+/* Task List Layout */
+#todoList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* Task Item Styling */
+li {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Enhanced Input Styling */
+input[type="text"], input[type="datetime-local"] {
+  padding: 0.75rem;
+  margin: 0.25rem 0;
+}
+
+/* Form Container Layout */
+#todoForm {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  #todoForm {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add Task Button Styling */
+button[type='submit'] {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+
+input[type="text"]:focus, input[type="datetime-local"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Completed Task Styling */
+li[data-completed="true"] {
+  background: #f8fafc;
+  opacity: 0.7;
+}
+
+li[data-completed="true"] span {
+  color: #94a3b8;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  #todoList {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  opacity: 0;
+  background: white;
+  padding: 1.75rem;
+  border-radius: 0.75rem;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal.show .modal-content {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+/* Button Interactions */
+.filter-btn, #saveEditBtn, button[type='submit'] {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.filter-btn:hover, #saveEditBtn:hover, button[type='submit']:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Drag and Drop Styles */
+.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+  background-color: #e2e8f0 !important;
+}
+
+li {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Modal backdrop styling for better visual hierarchy */
+#editModal {
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.insert-above {
+  border-top: 2px solid #3b82f6;
+  margin-top: -2px;
+}
+
+.insert-below {
+  border-bottom: 2px solid #3b82f6;
+  margin-bottom: -2px;
+}
