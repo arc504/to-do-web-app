@@ -3,91 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Todo App</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Task Master</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gray-100 min-h-screen p-8">
-  <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Todo List</h1>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <i class="fas fa-clipboard-check app-logo"></i>
+      <h1>Task Master</h1>
+    </header>
     
-    <form id="todoForm" class="mb-6 grid grid-cols-1 md:grid-cols-4 gap-3">
-      <input
-        type="text"
-        id="taskInput"
-        placeholder="Add a new task"
-        class="md:col-span-2 px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-      >
-      <input
-        type="datetime-local"
-        id="dueDateInput"
-        class="px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-        aria-label="Due date"
-      >
-      <input
-        type="datetime-local"
-        id="reminderInput"
-        class="px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-        aria-label="Reminder time"
-      >
-      <button
-        type="submit"
-        class="md:col-span-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-[1.02]"
-      >
-        Add Task
+    <form id="todoForm">
+      <input type="text" id="taskInput" placeholder="Add a new task" required>
+      <input type="datetime-local" id="dueDateInput">
+      <input type="datetime-local" id="reminderInput">
+      <button type="submit">
+        <i class="fas fa-plus"></i> Add Task
       </button>
     </form>
-
-    <div class="flex gap-2 mb-4">
-      <button data-filter="all" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition-colors">All</button>
-      <button data-filter="pending" class="filter-btn px-4 py-2 rounded-lg bg-yellow-200 hover:bg-yellow-300 transition-colors">Pending</button>
-      <button data-filter="completed" class="filter-btn px-4 py-2 rounded-lg bg-green-200 hover:bg-green-300 transition-colors">Completed</button>
+    
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">
+        <i class="fas fa-list"></i> All
+      </button>
+      <button class="filter-btn" data-filter="pending">
+        <i class="fas fa-clock"></i> Pending
+      </button>
+      <button class="filter-btn" data-filter="completed">
+        <i class="fas fa-check-circle"></i> Completed
+      </button>
     </div>
-
-    <ul id="todoList" class="space-y-2">
-      <!-- Todo items will be inserted here -->
-    </ul>
+    
+    <ul id="todoList"></ul>
   </div>
 
-    <!-- Edit Task Modal -->
-    <div id="editModal" class="modal">
-      <div class="modal-content">
-        <h3 class="text-lg font-semibold mb-4">Edit Task</h3>
-        <input 
-          type="text" 
-          id="editInput"
-          class="w-full p-2 border rounded mb-4"
-          placeholder="Edit task..."
-        >
-        <input
-          type="datetime-local"
-          id="editDueDate"
-          class="w-full p-2 border rounded mb-4"
-          aria-label="Due date"
-        >
-        <input
-          type="datetime-local"
-          id="editReminder"
-          class="w-full p-2 border rounded mb-4"
-          aria-label="Reminder time"
-        >
-        <div class="flex justify-end gap-2">
-          <button 
-            id="cancelEditBtn"
-            class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded"
-          >
-            Cancel
-          </button>
-          <button 
-            id="saveEditBtn"
-            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Save
-          </button>
-        </div>
+  <!-- Modal for editing tasks -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h3>Edit Task</h3>
+      <input type="text" id="editInput" placeholder="Task name">
+      <input type="datetime-local" id="editDueDate">
+      <input type="datetime-local" id="editReminder">
+      <div class="modal-actions">
+        <button id="saveEditBtn" class="btn-primary">Save Changes</button>
+        <button id="cancelEditBtn" class="btn-secondary">Cancel</button>
       </div>
     </div>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
